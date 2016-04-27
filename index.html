@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>响应式 - by developer.cn.com </title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile.flatui.css" />
+</head>
+<body ng-app="chat" ng-controller="chat">
+<div data-role="page">
+	<div data-role="header" class="header linear-g">
+        <a href="#panel-left" data-iconpos="notext" class="glyphicon glyphicon-th-large col-xs-2 text-right"> </a>
+        <a class="text-center col-xs-8"><button type="button" name="button" class="btn btn-primary" ng-click="getHistory()">查看历史数据</button>
+				<audio src="" id="audio"  controls="controls" style="display:none" autoplay="autoplay"></a>
+        <a href="#panel-right" data-iconpos="notext" class="glyphicon glyphicon-user col-xs-2 text-left"> </a>
+    </div>
+    <div data-role="panel" data-position="left" data-display="push" class="list-group shortcut_menu dn linear-g" id="panel-left" style="height:500px;overflow-y:auto">
+        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-home"> </span> &nbsp;菜单1</a>
+        <a onclick="showzhao()" class="list-group-item"><span class="glyphicon glyphicon-edit"> </span> &nbsp;菜单2</a>
+        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-list"> </span> &nbsp;菜单3</a>
+        <a href="#" class="list-group-item"><span class="glyphicon glyphicon-list-alt"> </span> &nbsp;菜单4</a>
+    </div>
+    <div data-role="panel" data-position="right" data-display="push" class="user_box text-center dn linear-g" id="panel-right">
+        <div class="u_info">
+            <img class="avatar" src="images/avatar.png" alt="头像">
+            <span class="username">developer</span>
+        </div>
+        <ul class="user_menu">
+          <li class="menu"><a href="#"><span class="glyphicon glyphicon-cog"> </span> &nbsp;基本设置</a></li>
+          <li class="menu"><a href="#"><span class="glyphicon glyphicon-lock"> </span> &nbsp;修改密码</a></li>
+          <li class="menu"><a href="#"><span class="glyphicon glyphicon-picture"> </span> &nbsp;上传头像</a></li>
+          <li class="menu"><a href="#"><span class="glyphicon glyphicon-off"> </span> &nbsp;安全退出</a></li>
+        </ul>
+    </div>
+    <div data-role="content" class="container" role="main" id="main">
+			<ul class="operating row text-center linear-g">
+				<li class="col-xs-2"><a href="#"><span class="glyphicon glyphicon-tags"></span> &nbsp;
+</audio> </a></li>
+				<li class="col-xs-6"><a href="#"><span class=""></span> <input type="text" id="say" style="width:100%;display:inline-block" name="name" value=""></a></li>
+				<li class="col-xs-4" ng-click="getSay()"><a href="#"><span class="glyphicon glyphicon-comment"></span> &nbsp;回复</a></li>
+				<!-- <li class="col-xs-4"><a href="#"><span class="glyphicon glyphicon-heart"></span> &nbsp;喜欢</a></li> -->
+			</ul>
+        <ul class="content-reply-box mg10">
+            <!-- <li class="odd">
+                <a class="user" href="#"><img class="img-responsive avatar_" src="images/avatar-1.png" alt=""><span class="user-name">奔波儿灞</span></a>
+                <div class="reply-content-box">
+                	<span class="reply-time">03-08 15：00</span>
+                    <div class="reply-content pr">
+                    	<span class="arrow">&nbsp;</span>
+                    	为什么小鑫的名字里有三个金呢？
+                    </div>
+                </div>
+            </li>
+            <li class="even">
+                <a class="user" href="#"><img class="img-responsive avatar_" src="images/avatar-1.png" alt=""><span class="user-name">灞波儿奔</span></a>
+                <div class="reply-content-box">
+                	<span class="reply-time">03-08 15：10</span>
+                    <div class="reply-content pr">
+                    	<span class="arrow">&nbsp;</span>
+                    	他命里缺金，所以取名叫鑫，有些人命里缺水，就取名叫淼，还有些人命里缺木就叫森。
+                    </div>
+                </div>
+            </li>
+            <li class="odd">
+                <a class="user" href="#"><img class="img-responsive avatar_" src="images/avatar-1.png" alt=""><span class="user-name">奔波儿灞</span></a>
+                <div class="reply-content-box">
+                	<span class="reply-time">03-08 15：20</span>
+                    <div class="reply-content pr">
+                    	<span class="arrow">&nbsp;</span>
+                    	那郭晶晶命里缺什么？
+                    </div>
+                </div>
+            </li>
+            <li class="even">
+                <a class="user" href="#"><img class="img-responsive avatar_" src="images/avatar-1.png" alt=""><span class="user-name">灞波儿奔</span></a>
+                <div class="reply-content-box">
+                	<span class="reply-time">03-08 15：30</span>
+                    <div class="reply-content pr">
+                    	<span class="arrow">&nbsp;</span>
+                    	此处省略一百字...
+                    </div>
+                </div>
+            </li> -->
+						<li class="{{item.class}}" ng-repeat="item in items">
+                <a class="user" href="#"><img class="img-responsive avatar_" src="{{item.src}}" alt=""><span class="user-name">{{item.name}}</span></a>
+                <div class="reply-content-box">
+                	<span class="reply-time">{{item.time}}</span>
+                    <div class="reply-content pr">
+                    	<span class="arrow">&nbsp;</span>
+                    	{{item.text}}
+                    </div>
+                </div>
+            </li>
+        </ul>
+				<!-- <ul class="operating row text-center linear-g">
+					<li><input type="text" name="name" value=""></li>
+				</ul> -->
+				<pre id="showpre">
+
+				</pre>
+    </div>
+</div>
+<div class="theme-popover-mask"></div>
+
+<div class="theme-popover" id="zhezhao2">
+<div class="theme-poptit" style="margin:50px 200px">
+<!-- <a href="javascript:void(0);" title="关闭" class="close">×</a> -->
+<h3 style="color:red">Congratulations</h3>
+</div>
+<div class="theme-popbod dform" style="margin:50px 200px">
+<button type="button" class="btn btn-primary" onclick="clicknext()">下一关</button>
+</div>
+</div>
+<div class="theme-popover" id="zhezhao1">
+<div class="theme-poptit" style="margin:50px 200px">
+<!-- <a href="javascript:void(0);" title="关闭" class="close">×</a> -->
+<h3>you dead!</h3>
+<div>
+<h2>and beated </h2>
+<div id="result"></div>
+<h2>% 的人</h2>
+</div>
+</div>
+<div class="theme-popbod dform" style="margin:50px 200px">
+
+<button type="button" class="btn btn-primary">确定</button>
+</div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.0-rc.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		/*
+		** 不同页面切换转场效果
+		** $.mobile.changePage ('/test.html', 'slide/pop/fade/slideup/slidedown/flip/none', false, false);
+		*/
+		$('.list-group-item,.menu a').click(function(){
+			$.mobile.changePage($(this).attr('href'), {
+				transition : 'flip', //转场效果
+				reverse : true       //默认为false,设置为true时将导致一个反方向的转场
+			});
+		});
+	});
+</script>
+<script src = "https://cdn.wilddog.com/js/client/current/wilddog.js" ></script>
+
+<script src="node_modules/angular/angular.js" charset="utf-8"></script>
+<script src="js/xml2json.js" charset="utf-8"></script>
+<script src="js/main.js" charset="utf-8"></script>
+<script src="js/service.js" charset="utf-8"></script>
+<script src="js/controller.js" charset="utf-8"></script>
+</body>
+</html>
