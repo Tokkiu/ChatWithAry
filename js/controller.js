@@ -89,13 +89,13 @@ chat.controller('chat',['$scope','$http','Chatsrv',function ($scope,$http,Chatsr
       }else{
       //只有’听‘关键字
 
-      console.log(result);;
+      // console.log(result);;
       var newInput=theInput.slice(index);
       var info="我找到这些歌曲：";
       console.log(newInput,index);
       Chatsrv.getSongs(newInput).then(function (response) {
         $scope.showJson(response);
-        console.log(response);
+        // console.log(response);
         for (var i = 0; i < response.data.data.data.length; i++) {
           info+=response.data.data.data[i].singername+"的"+response.data.data.data[i].songname+'、';
         }
@@ -192,13 +192,12 @@ chat.controller('chat',['$scope','$http','Chatsrv',function ($scope,$http,Chatsr
     $scope.showJson(items);
   }
   $scope.showJson=function (res) {
-var str = JSON.stringify(res, undefined, 4);
-
-output(syntaxHighlight(str));
+    var str = JSON.stringify(res, undefined, 4);
+  output(syntaxHighlight(str));
   }
   function output(inp) {
   document.getElementById('showpre').innerHTML = inp;
-}
+  }
 
   function syntaxHighlight(json) {
       json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
